@@ -1,24 +1,13 @@
 import pickle
 import streamlit as st
-from urllib.request import urlopen
-import time
-import joblib
-from io import BytesIO
-import requests
 
 st.set_page_config(layout="wide")
 
 def prediction(X_test):
-    mfile = 'https://github.com/WonyoungCho/diabetes/raw/main/finalized_model.pkl'
     mfile = 'finalized_model.pkl'
-    #model = joblib.load(BytesIO(requests.get(mfile).content))
-    with open(mfile, 'rb') as f:
-        model = pickle.load(f)
-    
+    model = pickle.load(open(mfile, 'rb'))
+   
     result = model.predict_proba([X_test])
-    
-    print(X_test)
-    print(result)
     return result[0][1]
 
 def input_values():
@@ -53,12 +42,8 @@ def main():
     result = input_values()    
     
     with st.sidebar:
-        # st.balloons()
         st.markdown(f'# Probability for diabetes')
         st.markdown(f'# {result*100:.2f} %')
-        now = time
-
-        print(now.strftime('%Y-%m-%d %H:%M:%S'))
 
 if __name__ == '__main__':
     main()
