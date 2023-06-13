@@ -10,12 +10,11 @@ st.set_page_config(layout="wide")
 
 def prediction(X_test):
     mfile = 'https://github.com/WonyoungCho/diabetes/raw/main/finalized_model.pkl'
-    #mfile = 'finalized_model.pkl'
-    model = joblib.load(BytesIO(requests.get(mfile).content))
-    #with open(mfile, 'rb') as f:
-    #    model = pickle.load(f)
-    #model = pickle.load(urlopen(mfile))
-
+    mfile = 'finalized_model.pkl'
+    #model = joblib.load(BytesIO(requests.get(mfile).content))
+    with open(mfile, 'rb') as f:
+        model = pickle.load(f)
+    
     result = model.predict_proba([X_test])
     
     print(X_test)
