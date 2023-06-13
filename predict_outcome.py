@@ -1,4 +1,4 @@
-import numpy as np
+#import numpy as np
 import pickle
 import streamlit as st
 
@@ -41,8 +41,8 @@ def input_values():
     test = st.slider(cols[keys[4]],  0, 1000,  80)
     pedi = st.slider(cols[keys[6]],0.0,  3.0, 1.1)
 
-    X_test = np.array([preg,plas,pres,skin,test,mass,pedi,age])
-    
+    #X_test = np.array([preg,plas,pres,skin,test,mass,pedi,age])
+    X_test = [preg,plas,pres,skin,test,mass,pedi,age]
     result = prediction(X_test)
 
     return result
