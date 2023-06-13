@@ -1,5 +1,3 @@
-import pandas as pd
-import numpy as np
 import pickle
 import streamlit as st
 
@@ -44,9 +42,6 @@ def input_values():
 
     X_test = np.array([preg,plas,pres,skin,test,mass,pedi,age])
     
-    # df = pd.read_table('X_test.tsv')
-    # X_test = df.values
-    # print(X_test[1])
     result = prediction(X_test)
 
     return result
