@@ -2,14 +2,16 @@ import pickle
 import streamlit as st
 from urllib.request import urlopen
 import time
+import joblib
 
 st.set_page_config(layout="wide")
 
 def prediction(X_test):
     mfile = 'https://github.com/WonyoungCho/diabetes/raw/main/finalized_model.pkl'
     mfile = 'finalized_model.pkl'
-    with open(mfile, 'rb') as f:
-        model = pickle.load(f)
+    model = joblib.load(mfile)
+    #with open(mfile, 'rb') as f:
+    #    model = pickle.load(f)
     #model = pickle.load(urlopen(mfile))
 
     result = model.predict_proba([X_test])
