@@ -3,13 +3,15 @@ import streamlit as st
 from urllib.request import urlopen
 import time
 import joblib
+from io import BytesIO
+import requests
 
 st.set_page_config(layout="wide")
 
 def prediction(X_test):
     mfile = 'https://github.com/WonyoungCho/diabetes/raw/main/finalized_model.pkl'
-    mfile = 'finalized_model.pkl'
-    model = joblib.load(mfile)
+    #mfile = 'finalized_model.pkl'
+    model = joblib.load(BytesIO(requests.get(mfile).content))
     #with open(mfile, 'rb') as f:
     #    model = pickle.load(f)
     #model = pickle.load(urlopen(mfile))
