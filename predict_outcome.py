@@ -1,24 +1,19 @@
-#import numpy as np
 import pickle
 import streamlit as st
-
+from urllib.request import urlopen
 import time
-
 
 st.set_page_config(layout="wide")
 
-
 def prediction(X_test):
     mfile = 'https://github.com/WonyoungCho/diabetes/raw/main/finalized_model.pkl'
-    mfile = 'finalized_model.pkl'
-    model = pickle.load(open(mfile, 'rb'))
+    model = pickle.load(urlopen(mfile))
 
     result = model.predict_proba([X_test])
     
     print(X_test)
     print(result)
     return result[0][1]
-
 
 def input_values():
     cols = {'preg':'Number of times pregnant',
@@ -48,7 +43,6 @@ def input_values():
 
     return result
 
-
 def main():
     result = input_values()    
     
@@ -59,7 +53,6 @@ def main():
         now = time
 
         print(now.strftime('%Y-%m-%d %H:%M:%S'))
-        
 
 if __name__ == '__main__':
     main()
