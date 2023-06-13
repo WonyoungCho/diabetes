@@ -8,7 +8,7 @@ st.set_page_config(layout="wide")
 
 
 def prediction(X_test):
-    mfile = 'finalized_model.pkl'
+    mfile = 'https://github.com/WonyoungCho/diabetes/raw/main/finalized_model.pkl'
     model = pickle.load(open(mfile, 'rb'))
 
     result = model.predict_proba([X_test])
